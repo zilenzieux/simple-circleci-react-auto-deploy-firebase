@@ -1,5 +1,5 @@
 # Use the latest 2.1 version of CircleCI pipeline processing engine, see https://circleci.com/docs/2.0/configuration-reference/
-version: 2.1
+version: 2
 
 # Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
 
@@ -15,10 +15,10 @@ jobs:
         name: build react
         command: |
          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD && \
-         sudo docker build -t $DOCKER_USERNAME/test-react . && \
-         sudo docker push $DOCKER_USERNAME/test-react
+         docker build -t $DOCKER_USERNAME/test-react-app . && \
+         docker push $DOCKER_USERNAME/test-react-app
 workflows:
-  version: 2.1
+  version: 2
   deploy:
     jobs:
           - react:
