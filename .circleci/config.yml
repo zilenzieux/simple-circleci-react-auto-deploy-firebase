@@ -1,0 +1,28 @@
+# Use the latest 2.1 version of CircleCI pipeline processing engine, see https://circleci.com/docs/2.0/configuration-reference/
+version: 2.1
+
+# Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
+
+    # Run the welcome/run job in its own container
+jobs:
+  react:
+    working_directory: ~/simple-circleCi-react
+    docker:
+      - image: circleci/node:8
+    steps:
+    - checkout
+    - run:
+        name: build react
+        command: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker image build -t $DOCKER_USERNAME/test-react .
+          docker image push $DOCKER_USERNAME/test-react
+workflows:
+  version: 2.1
+  deploy:
+    jobs:
+          - react:
+              filters:
+                branches:
+                  only:
+                    - master
