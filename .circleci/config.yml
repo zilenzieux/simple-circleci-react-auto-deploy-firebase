@@ -15,8 +15,8 @@ jobs:
         name: build react
         command: |
          docker login -u $DOCKER_USERNAME --password-stdin $DOCKER_PASSWORD && \
-         docker image build -t $DOCKER_USERNAME/test-react . && \
-         docker image push $DOCKER_USERNAME/test-react
+         docker build -t $DOCKER_USERNAME/test-react . && \
+         docker push $DOCKER_USERNAME/test-react
 workflows:
   version: 2.1
   deploy:
