@@ -1,11 +1,15 @@
 FROM node:8
-WORKDIR /work
-COPY package*.json ./
+WORKDIR /usr/src/app
 
+# Installing dependencies
+COPY package*.json ./
 RUN npm install
+
+# Copying source files
 COPY . .
 
-EXPOSE 3000
+# Building app
+RUN npm run build
 
-
-CMD npm start
+# Running the app
+CMD [ "npm", "start" ]
