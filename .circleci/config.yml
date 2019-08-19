@@ -19,6 +19,9 @@ jobs:
          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD && \
          docker build -t $DOCKER_USERNAME/test-react-app . && \
          docker push $DOCKER_USERNAME/test-react-app
+    - run:
+          name: Firebase Deploy
+          command: ./node_modules/.bin/firebase deploy --project $PROJECT_ID --token "$TOKEN_FIREBASE"
 workflows:
   version: 2
   deploy:
