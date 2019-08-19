@@ -8,14 +8,14 @@ jobs:
   react:
     working_directory: ~/simple-circleCi-react
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:10
     steps:
     # - setup_remote_docker:
     #     docker_layer_caching: true
     - checkout
     - run:
         name: install npm
-        command: npm i
+        command: npm install
     - run:
         name: build react
         command: npm run build
