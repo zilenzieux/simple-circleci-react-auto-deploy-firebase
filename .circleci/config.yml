@@ -16,9 +16,10 @@ jobs:
     - run:
         name: build react
         command: |
-         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD && \
-         docker build -t $DOCKER_USERNAME/test-react-app . && \
-         docker push $DOCKER_USERNAME/test-react-app
+        #  docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD && \
+        #  docker build -t $DOCKER_USERNAME/test-react-app . && \
+        #  docker push $DOCKER_USERNAME/test-react-app \
+        npm run build
     - run:
           name: Firebase Deploy
           command: ./node_modules/.bin/firebase deploy --project $PROJECT_ID --token "$TOKEN_FIREBASE"
